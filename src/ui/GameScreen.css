@@ -1,0 +1,42 @@
+.game-screen {
+  position: fixed;
+  inset: 0;
+  background: #062c3d;
+  overflow: hidden;
+}
+
+.game-screen__canvas {
+  position: absolute;
+  inset: 0;
+}
+
+.game-screen__canvas canvas {
+  display: block;
+  touch-action: none;
+}
+
+.game-screen__overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  gap: 12px;
+  text-align: center;
+  color: #fff;
+  background: rgb(6 44 61 / 85%);
+}
+
+.game-screen__hint {
+  position: absolute;
+  left: 50%;
+  bottom: max(12px, env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  margin: 0;
+  padding: 6px 12px;
+  border-radius: 6px;
+  color: #fff;
+  background: rgb(0 0 0 / 45%);
+  font-size: 14px;
+  white-space: nowrap;
+  pointer-events: none;
+}
