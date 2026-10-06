@@ -18,10 +18,14 @@ const ACTION_BY_CODE = new Map<string, ControlAction>(
 /**
  * Tracks held game keys. Keys are only captured while `enabled` is true, so
  * menus and forms keep normal keyboard behavior.
+ *
+ * A key pressed and released between two reads still counts once, so quick
+ * taps are not lost when frames are slow.
  */
 export class KeyboardInput implements InputSource {
   enabled = false;
   private readonly held = new Set<string>();
+  private readonly tapped = new Set<string>();
 
   constructor(private readonly target: Window = window) {
     target.addEventListener('keydown', this.onKeyDown);
@@ -32,22 +36,24 @@ export class KeyboardInput implements InputSource {
   read(): ControlState {
     if (!this.enabled) return { ...IDLE_CONTROLS };
     const state = { ...IDLE_CONTROLS };
-    for (const code of this.held) {
+    for (const code of [...this.held, ...this.tapped]) {
       const action = ACTION_BY_CODE.get(code);
       if (action) state[action] = true;
     }
+    this.tapped.clear();
     return state;
   }
 
   reset(): void {
     this.held.clear();
+    this.tapped.clear();
   }
 
   dispose(): void {
     this.target.removeEventListener('keydown', this.onKeyDown);
     this.target.removeEventListener('keyup', this.onKeyUp);
     this.target.removeEventListener('blur', this.onBlur);
-    this.held.clear();
+    this.reset();
   }
 
   private readonly onKeyDown = (event: KeyboardEvent): void => {
@@ -55,6 +61,7 @@ export class KeyboardInput implements InputSource {
     if (isEditableTarget(event.target)) return;
     event.preventDefault();
     this.held.add(event.code);
+    this.tapped.add(event.code);
   };
 
   private readonly onKeyUp = (event: KeyboardEvent): void => {
@@ -62,7 +69,7 @@ export class KeyboardInput implements InputSource {
   };
 
   private readonly onBlur = (): void => {
-    this.held.clear();
+    this.reset();
   };
 }
 
