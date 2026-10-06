@@ -1,6 +1,11 @@
 import { useState } from 'react';
+import type { MatchSettings } from '../../api/contracts';
 import type { MatchResult } from '../../game/MatchStore';
+import type { PlayerIdentity } from '../../settings/player';
 import { ControlsHelp } from '../components/ControlsHelp';
+import { MatchHistoryList, RankingList } from '../components/Leaderboards';
+import { NetworkLab } from '../components/NetworkLab';
+import { PendingMatchesNotice } from '../components/Registration';
 import { ScreenHeading } from '../components/ScreenHeading';
 import { Tabs } from '../components/Tabs';
 import { END_REASON_LABEL, formatClock } from '../format';
@@ -9,12 +14,16 @@ import './menus.css';
 type MenuTab = 'ranking' | 'history';
 
 interface MainMenuProps {
+  player: PlayerIdentity;
+  /** The ranking compares matches played with these settings (the player's current options). */
+  rankingSettings: MatchSettings;
   lastResult: MatchResult | null;
+  mocksEnabled: boolean;
   onPlay: () => void;
   onOptions: () => void;
 }
 
-export function MainMenu({ lastResult, onPlay, onOptions }: MainMenuProps) {
+export function MainMenu({ player, rankingSettings, lastResult, mocksEnabled, onPlay, onOptions }: MainMenuProps) {
   const [tab, setTab] = useState<MenuTab>('ranking');
 
   return (
@@ -41,12 +50,17 @@ export function MainMenu({ lastResult, onPlay, onOptions }: MainMenuProps) {
             </button>
           </div>
 
+          <p className="player-name">
+            Sailing as <strong data-testid="player-name">{player.playerName}</strong>
+          </p>
           {lastResult && (
             <p className="last-match" data-testid="last-match">
               Last match: <strong>{lastResult.score} pts</strong> · {formatClock(lastResult.durationSec)} ·{' '}
               {END_REASON_LABEL[lastResult.reason]}
             </p>
           )}
+          <PendingMatchesNotice />
+          {mocksEnabled && <NetworkLab />}
         </div>
 
         <div className="menu-layout__side">
@@ -60,13 +74,9 @@ export function MainMenu({ lastResult, onPlay, onOptions }: MainMenuProps) {
               {
                 id: 'ranking',
                 label: 'Ranking',
-                content: <p className="tabs__empty">The ranking is not available yet.</p>,
+                content: <RankingList settings={rankingSettings} playerId={player.playerId} />,
               },
-              {
-                id: 'history',
-                label: 'Match History',
-                content: <p className="tabs__empty">Your match history is not available yet.</p>,
-              },
+              { id: 'history', label: 'Match History', content: <MatchHistoryList playerId={player.playerId} /> },
             ]}
           />
         </div>

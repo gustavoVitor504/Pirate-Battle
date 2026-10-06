@@ -7,6 +7,12 @@
 export const STORAGE_KEYS = {
   options: 'pirate-battle:options',
   lastResult: 'pirate-battle:last-result',
+  player: 'pirate-battle:player',
+  /** Completed matches not yet confirmed by the API. */
+  pendingMatches: 'pirate-battle:pending-matches',
+  /** Mock API: records confirmed by the fake server, and the active network scenario. */
+  mockDb: 'pirate-battle:mock-db',
+  mockScenario: 'pirate-battle:mock-scenario',
   /** Session-only: which screen to restore after a refresh (only the result screen is restored). */
   screen: 'pirate-battle:screen',
 } as const;

@@ -1,4 +1,5 @@
 import type { MatchResult } from '../../game/MatchStore';
+import { RegistrationStatusLine } from '../components/Registration';
 import { ScreenHeading } from '../components/ScreenHeading';
 import { END_REASON_LABEL, formatClock } from '../format';
 import './menus.css';
@@ -30,11 +31,8 @@ export function ResultScreen({ result, onPlayAgain, onMainMenu }: ResultScreenPr
             <dt>Reason</dt>
             <dd data-testid="result-reason">{END_REASON_LABEL[result.reason]}</dd>
           </div>
-          <div>
-            <dt>Match record</dt>
-            <dd data-testid="result-record">Saved on this device</dd>
-          </div>
         </dl>
+        <RegistrationStatusLine matchId={result.matchId} />
 
         <div className="stack">
           <button type="button" className="menu-button" onClick={onPlayAgain}>

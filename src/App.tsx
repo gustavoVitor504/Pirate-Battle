@@ -1,10 +1,13 @@
-import { useState } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
+import { useEffect, useState } from 'react';
+import { registerCompletedMatch, retryPendingMatches } from './api/registration';
 import { audio } from './game/audio/AudioManager';
 import type { GameConfig } from './game/config';
 import type { MatchResult } from './game/MatchStore';
 import { readJson, removeItem, STORAGE_KEYS, writeJson } from './lib/storage';
 import { loadLastResult, saveLastResult } from './settings/lastResult';
 import { buildGameConfig, loadOptions, type PlayerOptions } from './settings/options';
+import { getPlayer, toMatchRecord } from './settings/player';
 import { GameScreen } from './ui/screens/GameScreen';
 import { MainMenu } from './ui/screens/MainMenu';
 import { OptionsScreen } from './ui/screens/OptionsScreen';
@@ -29,10 +32,15 @@ function initialScreen(): Screen {
 
 let nextMatchId = 1;
 
-export function App() {
+export function App({ mocksEnabled }: { mocksEnabled: boolean }) {
+  const queryClient = useQueryClient();
   const [screen, setScreen] = useState<Screen>(initialScreen);
+  const player = getPlayer();
   const [options, setOptions] = useState<PlayerOptions>(loadOptions);
   const [lastResult, setLastResult] = useState<MatchResult | null>(loadLastResult);
+
+  // Matches left unconfirmed by an earlier session (failure, refresh, closed tab) are sent again.
+  useEffect(() => retryPendingMatches(queryClient), [queryClient]);
 
   const go = (next: Screen, sound: 'uiClick' | 'uiBack' = 'uiClick') => {
     audio.play(sound, 0.5);
@@ -47,7 +55,16 @@ export function App() {
 
   switch (screen.name) {
     case 'menu':
-      return <MainMenu lastResult={lastResult} onPlay={play} onOptions={() => go({ name: 'options' })} />;
+      return (
+        <MainMenu
+          player={player}
+          rankingSettings={options}
+          lastResult={lastResult}
+          mocksEnabled={mocksEnabled}
+          onPlay={play}
+          onOptions={() => go({ name: 'options' })}
+        />
+      );
     case 'options':
       return <OptionsScreen options={options} onSaved={setOptions} onBack={mainMenu} />;
     case 'game':
@@ -58,6 +75,8 @@ export function App() {
           onMatchEnd={(result) => {
             saveLastResult(result);
             setLastResult(result);
+            // Queued (persisted) before sending, so a failure or refresh cannot lose it.
+            registerCompletedMatch(queryClient, toMatchRecord(result, player));
             // Mark the result screen as the one to restore even if the page reloads during the outro.
             writeJson(STORAGE_KEYS.screen, 'result', 'session');
           }}
