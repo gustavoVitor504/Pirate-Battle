@@ -20,6 +20,15 @@ export interface Ship {
   /** Pose at the start of the last step, used by the renderer to interpolate. */
   previousPosition: Vec2;
   previousRotation: number;
+  /** Route-following state for AI-controlled ships. */
+  navigation: ShipNavigation;
+}
+
+export interface ShipNavigation {
+  /** Remaining waypoints; empty while the target is in direct view. */
+  route: Vec2[];
+  /** Seconds until the route is recomputed. */
+  replanIn: number;
 }
 
 export type WeaponSlot = 'front' | 'left' | 'right';

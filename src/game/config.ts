@@ -87,6 +87,14 @@ export interface ShooterConfig {
 
 export type EnemyKind = 'chaser' | 'shooter';
 
+/** Enemy pathfinding around islands (see `simulation/navigation.ts`). */
+export interface NavigationConfig {
+  /** Extra distance kept between the hull and an island when planning a route. */
+  clearance: number;
+  /** How often an enemy without line of sight recomputes its route. */
+  replanIntervalSec: number;
+}
+
 export interface SpawnConfig {
   /** Relative chance of each kind after the first volley, which contains one of each. */
   weights: Readonly<Record<EnemyKind, number>>;
@@ -117,6 +125,7 @@ export interface GameConfig {
   player: PlayerConfig;
   chaser: ChaserConfig;
   shooter: ShooterConfig;
+  navigation: NavigationConfig;
   spawn: SpawnConfig;
 }
 
@@ -187,6 +196,10 @@ export const DEFAULT_GAME_CONFIG: GameConfig = {
     attackRange: 380,
     holdDistance: 260,
     aimTolerance: 0.2,
+  },
+  navigation: {
+    clearance: 22,
+    replanIntervalSec: 0.25,
   },
   spawn: {
     weights: { chaser: 0.55, shooter: 0.45 },

@@ -13,6 +13,7 @@ import {
   resolveHullCollisions,
 } from './collision';
 import type { Faction, GameEvent, MatchEndReason, Projectile, Ship, ShipKind, WeaponSlot } from './entities';
+import { Navigator } from './navigation';
 import { Random } from './random';
 
 export type MatchStatus = 'running' | 'ended';
@@ -39,6 +40,7 @@ export class Simulation {
   endReason: MatchEndReason | null = null;
 
   private readonly random: Random;
+  private readonly navigator: Navigator;
   private readonly pendingEvents: GameEvent[] = [];
   private nextEntityId = 1;
   private nextSpawnAt = FIRST_SPAWN_DELAY_SEC;
@@ -50,6 +52,8 @@ export class Simulation {
   ) {
     this.random = new Random(seed);
     this.arena = createArena(config.arena);
+    // All ships share one hull shape, so one navigation graph serves every enemy.
+    this.navigator = new Navigator(this.arena, config.chaser.ship.hull.radius + config.navigation.clearance);
     this.player = this.createShip('player', config.player.ship, {
       position: { x: this.arena.width / 2, y: this.arena.height - 96 },
       rotation: -Math.PI / 2,
@@ -139,11 +143,17 @@ export class Simulation {
   private updateEnemy(enemy: Ship, dt: number): void {
     if (!enemy.alive) return;
     tickCooldowns(enemy, dt);
-    const steering = steerTowards(enemy, this.player.position, this.arena, dt);
+    const steering = steerTowards(
+      enemy,
+      this.player.position,
+      this.navigator,
+      this.config.navigation.replanIntervalSec,
+      dt,
+    );
 
     if (enemy.kind === 'chaser') {
-      // Ease off while facing away so it turns tighter instead of circling wide.
-      const thrust = Math.abs(steering.angleToTarget) < Math.PI / 2;
+      // Ease off while the course is well behind, so it turns tighter instead of circling wide.
+      const thrust = Math.abs(steering.angleToCourse) < Math.PI * 0.6;
       this.moveShip(enemy, thrust, steering.turn, dt);
       if (this.player.alive && hullsOverlapShips(enemy, this.player)) {
         this.damage(this.player, this.config.chaser.ramDamage, false);
@@ -153,9 +163,12 @@ export class Simulation {
     }
 
     const shooter = this.config.shooter;
-    this.moveShip(enemy, steering.distanceToTarget > shooter.holdDistance, steering.turn, dt);
+    // Keeps sailing while an island blocks the view, even when close, to find a firing line.
+    const thrust = !steering.lineOfSight || steering.distanceToTarget > shooter.holdDistance;
+    this.moveShip(enemy, thrust, steering.turn, dt);
     if (
       this.player.alive &&
+      steering.lineOfSight &&
       enemy.cooldowns.front <= 0 &&
       steering.distanceToTarget <= shooter.attackRange &&
       Math.abs(steering.angleToTarget) <= shooter.aimTolerance
@@ -335,6 +348,7 @@ export class Simulation {
       cooldowns: { front: 0, left: 0, right: 0 },
       previousPosition: { ...pose.position },
       previousRotation: pose.rotation,
+      navigation: { route: [], replanIn: 0 },
     };
   }
 }
