@@ -17,6 +17,8 @@ export const SOUND_FILES = {
   gameComplete: ['game_complete'],
   gamePause: ['game_pause'],
   gameResume: ['game_resume'],
+  uiClick: ['ui_click'],
+  uiBack: ['ui_back'],
   oceanLoop: ['ocean_ambience_loop'],
   sailingLoop: ['ship_sailing_loop'],
 } as const satisfies Record<string, readonly string[]>;

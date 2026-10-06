@@ -1,0 +1,272 @@
+.panel--wide {
+  width: min(640px, 100%);
+}
+
+/* Main menu: one column on narrow screens, two side by side on wide ones so it fits a laptop screen. */
+.menu-layout {
+  display: grid;
+  gap: 20px;
+}
+
+.menu-layout__side > :first-child {
+  margin-top: 0;
+}
+
+@media (min-width: 900px) {
+  .panel--wide.menu-layout {
+    width: min(1040px, 100%);
+    grid-template-columns: minmax(300px, 1fr) minmax(380px, 1.25fr);
+    align-items: center;
+    column-gap: 32px;
+    padding: 16px 24px;
+  }
+}
+
+/* Short screens (laptops, zoomed browsers): shrink the big art so the board still fits. */
+@media (max-height: 760px) {
+  .menu-title img {
+    width: min(300px, 100%);
+  }
+
+  .panel__subtitle {
+    margin-bottom: 12px;
+  }
+
+  .menu-button {
+    width: 210px;
+    font-size: 19px;
+  }
+}
+
+.menu-title {
+  margin: 0;
+}
+
+.menu-title:focus {
+  outline: none;
+}
+
+.menu-title img {
+  display: block;
+  width: min(384px, 100%);
+  height: auto;
+  margin: 0 auto;
+}
+
+.section-title {
+  margin: 0 0 8px;
+  font-size: 15px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+.text-button {
+  padding: 6px 10px;
+  border: 0;
+  background: none;
+  color: var(--color-gold);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* ---------------------------------------------------------------- main menu */
+
+.last-match {
+  margin: 16px 0 0;
+  font-size: 14px;
+}
+
+.controls-help {
+  margin: 20px auto 0;
+  max-width: 420px;
+  text-align: left;
+}
+
+.controls-help .section-title {
+  text-align: center;
+}
+
+.controls-help__list {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+}
+
+.controls-help__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 14px;
+}
+
+.controls-help__row dd {
+  display: flex;
+  gap: 4px;
+  margin: 0;
+}
+
+kbd {
+  min-width: 26px;
+  padding: 1px 6px;
+  border: 1px solid var(--color-wood);
+  border-bottom-width: 3px;
+  border-radius: 5px;
+  background: #0f1826;
+  font: 700 12px var(--font);
+  text-align: center;
+}
+
+.controls-help__touch {
+  margin: 8px 0 0;
+  font-size: 13px;
+  text-align: center;
+  color: #d8dde6;
+}
+
+.tabs {
+  margin-top: 20px;
+}
+
+.tabs__list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tabs__panel {
+  min-height: 72px;
+  margin-top: 8px;
+  padding: 12px;
+  border: 2px solid rgb(201 138 60 / 60%);
+  border-radius: 8px;
+  background: rgb(15 24 38 / 60%);
+}
+
+.tabs__empty {
+  margin: 12px 0;
+  color: #d8dde6;
+}
+
+/* ---------------------------------------------------------------- options */
+
+.options {
+  width: min(480px, 100%);
+}
+
+.option-field {
+  margin: 16px 0;
+}
+
+.option-field__label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.option-field__control {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.option-field__input {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.option-field__input input {
+  width: 4.5ch;
+  padding: 4px 6px;
+  border: 2px solid var(--color-wood);
+  border-radius: 6px;
+  background: #0f1826;
+  color: var(--color-ink);
+  font: inherit;
+  text-align: center;
+  appearance: textfield;
+}
+
+.option-field__input input::-webkit-inner-spin-button,
+.option-field__input input::-webkit-outer-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+.option-field__input input[aria-invalid='true'] {
+  border-color: var(--color-error);
+}
+
+.option-field__hint {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: #d8dde6;
+}
+
+.option-field__error {
+  margin: 6px 0 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-error);
+}
+
+.options__status {
+  min-height: 1.4em;
+  margin: 8px 0 12px;
+  font-size: 14px;
+  color: var(--color-gold);
+}
+
+/* ---------------------------------------------------------------- result */
+
+.result__score {
+  margin: 0;
+  font-size: 72px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--color-gold);
+  text-shadow: 0 3px 0 rgb(0 0 0 / 45%);
+}
+
+.result__score-label {
+  display: block;
+  margin-top: 4px;
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  text-shadow: none;
+}
+
+.result__details {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px 16px;
+  max-width: 400px;
+  margin: 16px auto 20px;
+  font-size: 14px;
+}
+
+.result__details dt {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #d8dde6;
+}
+
+.result__details dd {
+  margin: 2px 0 0;
+  font-weight: 700;
+}
+
+@media (max-width: 480px) {
+  .tabs .menu-button--secondary {
+    width: 148px;
+    font-size: 12px;
+  }
+}

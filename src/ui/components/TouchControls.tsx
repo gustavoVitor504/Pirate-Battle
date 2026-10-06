@@ -1,5 +1,5 @@
 import type { PointerEvent } from 'react';
-import type { ControlAction } from '../game/input/controls';
+import type { ControlAction } from '../../game/input/controls';
 
 const ICONS = `${import.meta.env.BASE_URL}assets/png/default/ui/controls`;
 

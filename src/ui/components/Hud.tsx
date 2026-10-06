@@ -1,6 +1,6 @@
 import { useSyncExternalStore } from 'react';
-import type { MatchStore } from '../game/MatchStore';
-import { formatClock } from './format';
+import type { MatchStore } from '../../game/MatchStore';
+import { formatClock } from '../format';
 
 /**
  * Score, time and health as real DOM text, so it is readable by assistive

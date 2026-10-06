@@ -177,7 +177,17 @@ export class GameEngine {
 
     if (sim.status === 'ended' && !this.result) {
       this.setInputEnabled(false);
-      this.result = { score: sim.score, durationSec: sim.elapsed, reason: sim.endReason ?? 'time-up' };
+      this.result = {
+        matchId: crypto.randomUUID(),
+        endedAt: new Date().toISOString(),
+        score: sim.score,
+        durationSec: Math.round(sim.elapsed * 1000) / 1000,
+        reason: sim.endReason ?? 'time-up',
+        settings: {
+          sessionDurationSec: sim.config.sessionDurationSec,
+          enemySpawnIntervalSec: sim.config.enemySpawnIntervalSec,
+        },
+      };
       this.options.onMatchEnd?.(this.result);
     }
 

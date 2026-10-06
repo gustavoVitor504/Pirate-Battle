@@ -1,23 +1,20 @@
-import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
-import { audio } from '../game/audio/AudioManager';
-import { DEFAULT_GAME_CONFIG, type GameConfig } from '../game/config';
-import { GameEngine, type EngineStatus } from '../game/GameEngine';
-import { MatchStore } from '../game/MatchStore';
-import { formatClock } from './format';
-import { Hud } from './Hud';
-import { Modal } from './Modal';
-import { TouchControls } from './TouchControls';
+import { useEffect, useEffectEvent, useRef, useState, useSyncExternalStore } from 'react';
+import { audio } from '../../game/audio/AudioManager';
+import type { GameConfig } from '../../game/config';
+import { GameEngine, type EngineStatus } from '../../game/GameEngine';
+import { MatchStore, type MatchResult } from '../../game/MatchStore';
+import { Hud } from '../components/Hud';
+import { Modal } from '../components/Modal';
+import { TouchControls } from '../components/TouchControls';
+import { END_REASON_LABEL } from '../format';
 import './GameScreen.css';
-
-const END_REASON_LABEL = {
-  'time-up': 'Time is up',
-  'player-destroyed': 'Your ship was sunk',
-} as const;
 
 const PAUSE_KEYS = new Set(['Escape', 'KeyP']);
 /** Touch devices are played in landscape; portrait pauses the match. */
 const PORTRAIT_TOUCH_QUERY = '(orientation: portrait) and (pointer: coarse)';
 const ICONS = `${import.meta.env.BASE_URL}assets/png/default/ui/controls`;
+/** Time the arena stays visible after the match ends, so the final explosion plays out. */
+const RESULT_DELAY_MS = 1500;
 
 function createMatchStore(config: GameConfig): MatchStore {
   return new MatchStore({
@@ -30,12 +27,22 @@ function createMatchStore(config: GameConfig): MatchStore {
   });
 }
 
-export function GameScreen() {
-  const config = DEFAULT_GAME_CONFIG;
+interface GameScreenProps {
+  /** Configuration for this match; captured when the match starts. */
+  config: GameConfig;
+  /** Called once, as soon as the match ends (before the result screen shows). */
+  onMatchEnd: (result: MatchResult) => void;
+  /** Called after a short delay to move on to the result screen. */
+  onShowResult: (result: MatchResult) => void;
+  /** Leaves the match without recording it. */
+  onQuit: () => void;
+}
+
+export function GameScreen({ config, onMatchEnd, onShowResult, onQuit }: GameScreenProps) {
   const hostRef = useRef<HTMLDivElement>(null);
   const engineRef = useRef<GameEngine | null>(null);
   const [status, setStatus] = useState<EngineStatus>({ kind: 'loading', progress: 0 });
-  // A new store means a new match: the effect below rebuilds the engine for it.
+  // A new store means a new engine (used to retry after an asset failure).
   const [store, setStore] = useState(() => createMatchStore(config));
   const [muted, setMuted] = useState(() => audio.muted);
   const { result, pauseReason } = useSyncExternalStore(store.subscribe, store.getSnapshot);
@@ -52,6 +59,15 @@ export function GameScreen() {
       if (engineRef.current === engine) engineRef.current = null;
     };
   }, [config, store]);
+
+  const handleMatchEnd = useEffectEvent((ended: MatchResult) => onMatchEnd(ended));
+  const showResult = useEffectEvent((ended: MatchResult) => onShowResult(ended));
+  useEffect(() => {
+    if (!result) return;
+    handleMatchEnd(result);
+    const timer = window.setTimeout(() => showResult(result), RESULT_DELAY_MS);
+    return () => window.clearTimeout(timer);
+  }, [result]);
 
   // Pause shortcut; only active while a match is on screen and playing.
   // Once paused, Escape belongs to the dialog (it resumes), so it is left alone.
@@ -80,7 +96,7 @@ export function GameScreen() {
     return () => query.removeEventListener('change', check);
   }, [running]);
 
-  const restart = () => setStore(createMatchStore(config));
+  const retry = () => setStore(createMatchStore(config));
   const resume = () => engineRef.current?.resume();
   const toggleMute = () => {
     audio.setMuted(!muted);
@@ -89,38 +105,49 @@ export function GameScreen() {
 
   return (
     <main className="game-screen">
+      <h1 className="visually-hidden">Pirate Battle — match in progress</h1>
       <div ref={hostRef} className="game-screen__canvas" />
 
       {running && (
         <>
           <Hud store={store} />
-          <div className="game-screen__actions">
-            <button
-              type="button"
-              className="round-button"
-              aria-label={muted ? 'Unmute sound' : 'Mute sound'}
-              aria-pressed={muted}
-              onClick={toggleMute}
-            >
-              <SpeakerIcon muted={muted} />
-            </button>
-            <button
-              type="button"
-              className="round-button"
-              aria-label="Pause game"
-              onClick={() => engineRef.current?.pause('manual')}
-            >
-              <img src={`${ICONS}/icon_pause.png`} alt="" />
-            </button>
-          </div>
-          <TouchControls
-            onPress={(action) => engineRef.current?.touch.press(action)}
-            onRelease={(action) => engineRef.current?.touch.release(action)}
-          />
-          <p className="game-screen__hint">
-            W / ↑ forward · A D / ← → turn · Space front cannon · Q / E broadside · Esc / P pause
-          </p>
+          {!result && (
+            <>
+              <div className="game-screen__actions">
+                <button
+                  type="button"
+                  className="round-button"
+                  aria-label={muted ? 'Unmute sound' : 'Mute sound'}
+                  aria-pressed={muted}
+                  onClick={toggleMute}
+                >
+                  <SpeakerIcon muted={muted} />
+                </button>
+                <button
+                  type="button"
+                  className="round-button"
+                  aria-label="Pause game"
+                  onClick={() => engineRef.current?.pause('manual')}
+                >
+                  <img src={`${ICONS}/icon_pause.png`} alt="" />
+                </button>
+              </div>
+              <TouchControls
+                onPress={(action) => engineRef.current?.touch.press(action)}
+                onRelease={(action) => engineRef.current?.touch.release(action)}
+              />
+              <p className="game-screen__hint">
+                W / ↑ forward · A D / ← → turn · Space front cannon · Q / E broadside · Esc / P pause
+              </p>
+            </>
+          )}
         </>
+      )}
+
+      {result && (
+        <p className="game-screen__banner" role="status">
+          {END_REASON_LABEL[result.reason]}!
+        </p>
       )}
 
       {status.kind === 'loading' && (
@@ -133,9 +160,14 @@ export function GameScreen() {
       {status.kind === 'error' && (
         <div className="game-screen__overlay" role="alert">
           <p>The game assets could not be loaded.</p>
-          <button type="button" className="primary-button" onClick={restart}>
-            Try again
-          </button>
+          <div className="modal__actions">
+            <button type="button" className="menu-button" onClick={retry}>
+              Try again
+            </button>
+            <button type="button" className="menu-button" onClick={onQuit}>
+              Main Menu
+            </button>
+          </div>
         </div>
       )}
 
@@ -149,27 +181,14 @@ export function GameScreen() {
             if (event.code === 'KeyP') resume();
           }}
         >
-          <button type="button" className="primary-button" onClick={resume} autoFocus>
+          <button type="button" className="menu-button" onClick={resume} autoFocus>
             Resume
           </button>
+          <button type="button" className="menu-button" onClick={onQuit}>
+            Main Menu
+          </button>
         </div>
-      </Modal>
-
-      <Modal open={result !== null} labelledBy="result-title">
-        {result && (
-          <>
-            <h2 id="result-title">{END_REASON_LABEL[result.reason]}</h2>
-            <p>
-              Score: <strong data-testid="result-score">{result.score}</strong> · Time played:{' '}
-              {formatClock(result.durationSec)}
-            </p>
-            <div className="modal__actions">
-              <button type="button" className="primary-button" onClick={restart} autoFocus>
-                Play Again
-              </button>
-            </div>
-          </>
-        )}
+        <p className="modal__note">Leaving now abandons the match; it will not be recorded.</p>
       </Modal>
     </main>
   );

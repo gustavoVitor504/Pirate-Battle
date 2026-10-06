@@ -1,10 +1,21 @@
 import type { MatchEndReason } from './simulation/entities';
 
+/** The player-editable settings a match was played with; matches only compare within the same settings. */
+export interface MatchSettings {
+  sessionDurationSec: number;
+  enemySpawnIntervalSec: number;
+}
+
+/** A completed match. `matchId` is generated once, so re-sending it never creates a duplicate record. */
 export interface MatchResult {
+  matchId: string;
+  /** ISO 8601 timestamp of when the match ended. */
+  endedAt: string;
   score: number;
   /** Active play time, in seconds. */
   durationSec: number;
   reason: MatchEndReason;
+  settings: MatchSettings;
 }
 
 /** `focus-lost` covers both the window losing focus and the tab being hidden. */
