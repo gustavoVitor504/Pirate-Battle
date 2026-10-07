@@ -13,6 +13,10 @@ export default tseslint.config(
       ecmaVersion: 2022,
       globals: globals.browser,
     },
+  },
+  {
+    // React rules apply to the app only (Playwright fixtures also use a `use` callback).
+    files: ['src/**/*.{ts,tsx}'],
     plugins: {
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
@@ -21,5 +25,9 @@ export default tseslint.config(
       ...reactHooks.configs.recommended.rules,
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
     },
+  },
+  {
+    files: ['tests/**/*.ts', '*.config.ts'],
+    languageOptions: { globals: globals.node },
   },
 );

@@ -6,6 +6,7 @@ import { App } from './App';
 import { audio } from './game/audio/AudioManager';
 import { resetNetworkState } from './mocks/reset';
 import { applyMockSettingsFromUrl } from './mocks/scenarios';
+import { installTestHooks, readTestConfig } from './testing/testHooks';
 import './index.css';
 
 const root = document.getElementById('root');
@@ -17,6 +18,7 @@ audio.preload();
 const MOCKS_ENABLED = import.meta.env.VITE_ENABLE_MOCKS !== 'false';
 
 async function bootstrap(container: HTMLElement): Promise<void> {
+  if (readTestConfig().enabled) installTestHooks();
   if (MOCKS_ENABLED) {
     if (applyMockSettingsFromUrl()) {
       // ?scenario=reset: back to the initial state.

@@ -3,6 +3,7 @@ import { audio } from '../../game/audio/AudioManager';
 import type { GameConfig } from '../../game/config';
 import { GameEngine, type EngineStatus } from '../../game/GameEngine';
 import { MatchStore, type MatchResult } from '../../game/MatchStore';
+import { attachEngine, readTestConfig } from '../../testing/testHooks';
 import { Hud } from '../components/Hud';
 import { Modal } from '../components/Modal';
 import { TouchControls } from '../components/TouchControls';
@@ -51,10 +52,20 @@ export function GameScreen({ config, onMatchEnd, onShowResult, onQuit }: GameScr
   useEffect(() => {
     const host = hostRef.current;
     if (!host) return;
-    const engine = new GameEngine({ host, config, store, onStatus: setStatus });
+    const testing = readTestConfig();
+    const engine = new GameEngine({
+      host,
+      config,
+      store,
+      onStatus: setStatus,
+      manualClock: testing.manualClock,
+      ...(testing.seed !== undefined ? { seed: testing.seed } : {}),
+    });
     engineRef.current = engine;
+    const detachTestHooks = testing.enabled ? attachEngine(engine) : undefined;
     void engine.start();
     return () => {
+      detachTestHooks?.();
       engine.destroy();
       if (engineRef.current === engine) engineRef.current = null;
     };

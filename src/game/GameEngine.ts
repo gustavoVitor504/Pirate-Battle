@@ -21,6 +21,12 @@ export interface GameEngineOptions {
   store: MatchStore;
   /** Seed for spawn positions and enemy mix; random when omitted. */
   seed?: number;
+  /**
+   * Test instrumentation: game time only moves through `advance()`, so tests
+   * are independent of frame rate and machine speed. Rendering, input,
+   * collisions and rules still run exactly as in normal play.
+   */
+  manualClock?: boolean;
   onStatus: (status: EngineStatus) => void;
   onMatchEnd?: (result: MatchResult) => void;
 }
@@ -35,7 +41,8 @@ export class GameEngine {
   /** On-screen buttons feed this; React calls `press`/`release`. */
   readonly touch = new TouchInput();
   private readonly host: HTMLElement;
-  private readonly simulation: Simulation;
+  /** Read by the test instrumentation only; the UI goes through `store`. */
+  readonly simulation: Simulation;
   private readonly keyboard = new KeyboardInput();
   private app: Application | null = null;
   private renderer: GameRenderer | null = null;
@@ -53,17 +60,38 @@ export class GameEngine {
     this.simulation = new Simulation(snapshotConfig(options.config), seed);
     this.store = options.store;
     this.store.update(this.readSnapshot());
-    // Temporary debugging handle; replaced by proper test instrumentation later.
-    if (import.meta.env.DEV) Object.assign(window, { __pirateSim: this.simulation });
+  }
+
+  get isRunning(): boolean {
+    return this.running;
+  }
+
+  get isPaused(): boolean {
+    return this.pauseReason !== null;
+  }
+
+  /** Manual-clock mode only: advances game time by `ms`, exactly as that much real time would. */
+  advance(ms: number): void {
+    if (!this.options.manualClock) throw new Error('advance() requires manualClock mode');
+    if (!this.running) return;
+    const { maxFrameMs } = this.simulation.config.simulation;
+    for (let left = ms; left > 0; left -= maxFrameMs) this.update(Math.min(left, maxFrameMs));
+    // The ticker is stopped in this mode: draw exactly one frame per advance.
+    this.app?.render();
   }
 
   async start(): Promise<void> {
     this.options.onStatus({ kind: 'loading', progress: 0 });
     // Sounds download in the background; they never hold up the match.
     audio.preload();
+    // Pixi rejects as soon as one file fails but keeps reporting progress for
+    // the rest; late progress must not turn the error screen back into "Loading".
+    let loadSettled = false;
     try {
       const textures = await loadGameTextures((progress) => {
-        if (!this.destroyed) this.options.onStatus({ kind: 'loading', progress });
+        if (!this.destroyed && !loadSettled) this.options.onStatus({ kind: 'loading', progress });
+      }).finally(() => {
+        loadSettled = true;
       });
       if (this.destroyed) return;
 
@@ -100,6 +128,11 @@ export class GameEngine {
       this.running = true;
       this.setInputEnabled(true);
       app.ticker.add(this.tick);
+      // Manual clock: no automatic frames, so a test's page stays responsive; advance() renders.
+      if (this.options.manualClock) {
+        app.ticker.stop();
+        app.render();
+      }
       this.options.onStatus({ kind: 'running' });
       // The tab may already have been hidden while assets were loading.
       if (document.hidden) this.pause('focus-lost');
@@ -160,9 +193,14 @@ export class GameEngine {
   }
 
   private readonly tick = (ticker: Ticker): void => {
+    // In manual-clock mode frames only redraw; time is fed by advance().
+    const frameMs = this.options.manualClock ? 0 : Math.min(ticker.deltaMS, this.simulation.config.simulation.maxFrameMs);
+    this.update(frameMs);
+  };
+
+  private update(frameMs: number): void {
     const sim = this.simulation;
-    const { stepMs, maxFrameMs } = sim.config.simulation;
-    const frameMs = Math.min(ticker.deltaMS, maxFrameMs);
+    const { stepMs } = sim.config.simulation;
     // While paused, elapsed real time is discarded rather than accumulated.
     const active = sim.status === 'running' && !this.pauseReason;
 
@@ -202,7 +240,7 @@ export class GameEngine {
       remainingSec: sim.remainingTime,
     });
     this.store.update(this.readSnapshot());
-  };
+  }
 
   private readSnapshot(): MatchSnapshot {
     const sim = this.simulation;
@@ -228,6 +266,7 @@ export class GameEngine {
     const world = this.renderer.world;
     world.scale.set(scale);
     world.position.set((width - arena.width * scale) / 2, (height - arena.height * scale) / 2);
+    if (this.options.manualClock) this.app.render();
   }
 
   /**

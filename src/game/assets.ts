@@ -61,6 +61,9 @@ export interface GameTextures extends Record<TextureKey, Texture> {
   islands: Record<IslandKind, Texture[][]>;
 }
 
+/** A request that never settles (stalled connection) is reported as a failure after this long. */
+const LOAD_TIMEOUT_MS = 20_000;
+
 export class AssetLoadError extends Error {
   constructor(readonly failedUrls: readonly string[]) {
     super(`Failed to load ${failedUrls.length} game asset(s).`);
@@ -81,7 +84,19 @@ export async function loadGameTextures(onProgress?: (progress: number) => void):
     ...islandKinds.flatMap((kind) => ISLAND_TILES[kind].flat().map(tile)),
   ];
 
-  const loaded = await Assets.load<Texture>(urls, onProgress).catch(() => ({}) as Record<string, Texture>);
+  // Decode images on the main thread: when a request fails inside Pixi's
+  // image worker the error never comes back and loading hangs, so a broken
+  // asset would never reach the retry screen.
+  Assets.setPreferences({ preferWorkers: false });
+
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  const timeout = new Promise<Record<string, Texture>>((resolve) => {
+    timer = setTimeout(() => resolve({}), LOAD_TIMEOUT_MS);
+  });
+  const loaded = await Promise.race([
+    Assets.load<Texture>(urls, onProgress).catch(() => ({}) as Record<string, Texture>),
+    timeout,
+  ]).finally(() => clearTimeout(timer));
   const failed = urls.filter((url) => !(loaded[url] instanceof Texture));
   if (failed.length > 0) throw new AssetLoadError(failed);
 

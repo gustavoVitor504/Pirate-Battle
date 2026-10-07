@@ -38,13 +38,16 @@ export class Simulation {
   score = 0;
   status: MatchStatus = 'running';
   endReason: MatchEndReason | null = null;
+  /** Timed spawns; tests switch them off to stage a scene with `spawnEnemy`. */
+  spawningEnabled = true;
+  /** Enemies spawned so far (by the timer or explicitly). */
+  spawnCount = 0;
 
   private readonly random: Random;
   private readonly navigator: Navigator;
   private readonly pendingEvents: GameEvent[] = [];
   private nextEntityId = 1;
   private nextSpawnAt = FIRST_SPAWN_DELAY_SEC;
-  private spawnCount = 0;
 
   constructor(
     readonly config: GameConfigSnapshot,
@@ -83,7 +86,7 @@ export class Simulation {
     if (this.elapsed >= this.config.sessionDurationSec) return this.end('time-up');
 
     while (this.elapsed >= this.nextSpawnAt) {
-      this.trySpawnEnemy();
+      if (this.spawningEnabled) this.trySpawnEnemy();
       this.nextSpawnAt += this.config.enemySpawnIntervalSec;
     }
   }
@@ -198,10 +201,17 @@ export class Simulation {
       const crowded = this.enemies.some((other) => distanceSq(other.position, position) < (halfLength * 2) ** 2);
       if (crowded) continue;
 
-      this.enemies.push(this.createShip(kind, stats, { position, rotation }));
-      this.spawnCount++;
+      this.spawnEnemy(kind, position, rotation);
       return;
     }
+  }
+
+  /** Adds an enemy at a given pose. Used by the spawn timer and by test instrumentation. */
+  spawnEnemy(kind: EnemyKind, position: Vec2, rotation: number): Ship {
+    const ship = this.createShip(kind, this.config[kind].ship, { position, rotation });
+    this.enemies.push(ship);
+    this.spawnCount++;
+    return ship;
   }
 
   // ---------------------------------------------------------------- shared
