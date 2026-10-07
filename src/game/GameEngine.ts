@@ -70,6 +70,11 @@ export class GameEngine {
     return this.pauseReason !== null;
   }
 
+  /** Display objects driven by the simulation (ships, projectiles, effects), for profiling. */
+  get renderedObjects(): number {
+    return this.renderer?.entityCount ?? 0;
+  }
+
   /** Manual-clock mode only: advances game time by `ms`, exactly as that much real time would. */
   advance(ms: number): void {
     if (!this.options.manualClock) throw new Error('advance() requires manualClock mode');

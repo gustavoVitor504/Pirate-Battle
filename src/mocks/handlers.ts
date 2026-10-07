@@ -3,6 +3,7 @@ import {
   compareRanking,
   DEFAULT_PAGE_SIZE,
   MAX_PAGE_SIZE,
+  MOCK_RESPONSE_HEADER,
   sameSettings,
   type ApiErrorBody,
   type MatchHistoryPage,
@@ -19,6 +20,13 @@ import { createManyPagesHistory, createManyPagesRanking } from './fixtures';
 import { getMockSettings, subscribeMockSettings, type MockSettings } from './scenarios';
 
 type Endpoint = 'ranking' | 'history' | 'register';
+
+// Every mocked response is marked, so the client can tell when a request slipped past the mock.
+const MOCK_HEADERS = { [MOCK_RESPONSE_HEADER]: '1' };
+
+function json<T extends object>(body: T, status = 200) {
+  return HttpResponse.json<T>(body, { status, headers: MOCK_HEADERS });
+}
 
 /** Counts requests, for scenarios whose timing depends on request order; resets with the scenario. */
 let requestCount = 0;
@@ -45,7 +53,7 @@ function latencyFor(settings: MockSettings, requestIndex: number): number {
 }
 
 function errorResponse(status: number, code: string, message: string) {
-  return HttpResponse.json<ApiErrorBody>({ error: { code, message } }, { status });
+  return json<ApiErrorBody>({ error: { code, message } }, status);
 }
 
 /**
@@ -167,7 +175,7 @@ export const handlers = [
         endedAt: record.endedAt,
       }));
 
-    return HttpResponse.json<RankingPage>({ ...paginate(ranked, paging.page, paging.pageSize), settings });
+    return json<RankingPage>({ ...paginate(ranked, paging.page, paging.pageSize), settings });
   }),
 
   http.get('/api/players/:playerId/matches', async ({ request, params }) => {
@@ -185,7 +193,7 @@ export const handlers = [
     }
     own.sort((a, b) => b.endedAt.localeCompare(a.endedAt) || a.matchId.localeCompare(b.matchId));
 
-    return HttpResponse.json<MatchHistoryPage>(paginate(own, paging.page, paging.pageSize));
+    return json<MatchHistoryPage>(paginate(own, paging.page, paging.pageSize));
   }),
 
   http.post('/api/matches', async ({ request }) => {
@@ -198,10 +206,7 @@ export const handlers = [
     // Idempotent on matchId: a re-sent match returns what is already stored.
     const existing = mockDb.find(record.matchId);
     if (existing) {
-      return HttpResponse.json<RegisterMatchResponse>(
-        { record: existing, created: false, revision: mockDb.revision },
-        { status: 200 },
-      );
+      return json<RegisterMatchResponse>({ record: existing, created: false, revision: mockDb.revision }, 200);
     }
 
     mockDb.insert(record);
@@ -210,9 +215,6 @@ export const handlers = [
       swallowedOnce.add(record.matchId);
       await delay('infinite');
     }
-    return HttpResponse.json<RegisterMatchResponse>(
-      { record, created: true, revision: mockDb.revision },
-      { status: 201 },
-    );
+    return json<RegisterMatchResponse>({ record, created: true, revision: mockDb.revision }, 201);
   }),
 ];

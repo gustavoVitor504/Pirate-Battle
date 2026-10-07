@@ -1,6 +1,7 @@
 import { QueryClientProvider } from '@tanstack/react-query';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import { onMockBypassed } from './api/client';
 import { createQueryClient } from './api/queryClient';
 import { App } from './App';
 import { audio } from './game/audio/AudioManager';
@@ -26,7 +27,8 @@ async function bootstrap(container: HTMLElement): Promise<void> {
     }
     try {
       const { startMockApi } = await import('./mocks/browser');
-      await startMockApi();
+      const mock = await startMockApi();
+      onMockBypassed(mock.reactivate);
     } catch {
       // Without the mock the ranking and history show their error states; the game itself still works.
     }

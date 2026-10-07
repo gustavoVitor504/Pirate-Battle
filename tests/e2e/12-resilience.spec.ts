@@ -1,4 +1,4 @@
-import { expect, test } from './support';
+import { expect, HTTP_ERROR_LOG, test } from './support';
 
 // Flow 12 — re-sending after a timeout without duplicates, and late responses never overwriting newer data.
 
@@ -72,5 +72,22 @@ test.describe('Network resilience', () => {
     await expect(page.getByTestId('ranking-table').locator('tbody tr')).toHaveCount(1, { timeout: 10_000 });
     await page.waitForTimeout(2500);
     await expect(page.getByTestId('ranking-table').locator('tbody tr')).toHaveCount(1);
+  });
+
+  test('recovers when the browser restarts the mock worker and forgets this page', async ({ app, page }) => {
+    // The first request after the worker forgot the page reaches the static host (HTTP 404) before recovery.
+    app.allowConsoleErrors(HTTP_ERROR_LOG);
+    await app.open();
+    await expect(page.getByTestId('ranking-table')).toBeVisible();
+
+    // Same state as a worker restarted by the browser: the page is controlled but no longer mocked.
+    await page.evaluate(() => navigator.serviceWorker.controller?.postMessage('CLIENT_CLOSE'));
+    await page.waitForTimeout(300);
+
+    await page.getByRole('tab', { name: 'Match History' }).click();
+    await expect(app.tabPanel).toContainText('No recorded matches yet', { timeout: 15_000 });
+    await page.getByRole('tab', { name: 'Ranking' }).click();
+    await expect(page.getByTestId('ranking-table').locator('tbody tr')).toHaveCount(5);
+    await expect(app.tabPanel.getByRole('alert')).toHaveCount(0);
   });
 });

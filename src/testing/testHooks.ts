@@ -70,6 +70,7 @@ const api = {
       remaining: sim.remainingTime,
       score: sim.score,
       spawnCount: sim.spawnCount,
+      renderedObjects: engine.renderedObjects,
       player: describeShip(sim.player),
       enemies: sim.enemies.filter((ship) => ship.alive).map(describeShip),
       projectiles: sim.projectiles.map((p) => ({ id: p.id, faction: p.faction, x: p.position.x, y: p.position.y })),

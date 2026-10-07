@@ -11,7 +11,8 @@
     "typecheck": "tsc -b",
     "test:e2e": "playwright test",
     "test:e2e:update": "playwright test --update-snapshots",
-    "test:e2e:report": "playwright show-report"
+    "test:e2e:report": "playwright show-report",
+    "perf": "npm run build && node scripts/perf/profile.mjs"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.104.1",

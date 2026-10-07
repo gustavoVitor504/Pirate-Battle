@@ -91,3 +91,9 @@ export function sameSettings(a: MatchSettings, b: MatchSettings): boolean {
 
 export const DEFAULT_PAGE_SIZE = 5;
 export const MAX_PAGE_SIZE = 50;
+
+/**
+ * Header the mock API adds to every response. A response without it came from
+ * somewhere else (the request bypassed the mock), which the client can repair.
+ */
+export const MOCK_RESPONSE_HEADER = 'x-pirate-mock';

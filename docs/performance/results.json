@@ -1,0 +1,1829 @@
+{
+  "environment": {
+    "date": "2026-10-07",
+    "cpu": "12th Gen Intel(R) Core(TM) i5-1235U",
+    "cpuCores": 12,
+    "memoryGB": 7.7,
+    "os": "Windows_NT 10.0.26200",
+    "gpu": "ANGLE (Intel, Intel(R) UHD Graphics (0x00004628) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "chromium 154.0.8037.98",
+    "headless": false,
+    "viewport": "1600×900",
+    "matchConfig": "default gameplay config, 180 s session, enemy spawn every 4 s (max 14 alive), seed 7, player invulnerable so combat lasts the whole run, sound muted"
+  },
+  "match": {
+    "frames": 20079,
+    "durationSec": 183.5,
+    "averageFps": 109.4,
+    "frameTimeMs": {
+      "p50": 8.3,
+      "p95": 16.6,
+      "p99": 25.1,
+      "max": 58.4
+    },
+    "framesOver20ms": 353,
+    "framesOver33ms": 21,
+    "longTasks": 0,
+    "entities": {
+      "enemies": {
+        "max": 9,
+        "average": 5.3
+      },
+      "projectiles": {
+        "max": 5,
+        "average": 1.1
+      },
+      "renderedObjects": {
+        "max": 24,
+        "average": 9.5
+      }
+    },
+    "simulatedSec": 180,
+    "score": 21,
+    "profiledSec": 180,
+    "fpsPerTenSeconds": [
+      {
+        "fromSec": 0,
+        "fps": 92.6
+      },
+      {
+        "fromSec": 10,
+        "fps": 109.3
+      },
+      {
+        "fromSec": 20,
+        "fps": 105.7
+      },
+      {
+        "fromSec": 30,
+        "fps": 109.6
+      },
+      {
+        "fromSec": 40,
+        "fps": 113.6
+      },
+      {
+        "fromSec": 50,
+        "fps": 100.8
+      },
+      {
+        "fromSec": 60,
+        "fps": 104.9
+      },
+      {
+        "fromSec": 70,
+        "fps": 113.4
+      },
+      {
+        "fromSec": 80,
+        "fps": 111.2
+      },
+      {
+        "fromSec": 90,
+        "fps": 114
+      },
+      {
+        "fromSec": 100,
+        "fps": 114.4
+      },
+      {
+        "fromSec": 110,
+        "fps": 112
+      },
+      {
+        "fromSec": 120,
+        "fps": 113.3
+      },
+      {
+        "fromSec": 130,
+        "fps": 113.3
+      },
+      {
+        "fromSec": 140,
+        "fps": 112.4
+      },
+      {
+        "fromSec": 150,
+        "fps": 112.6
+      },
+      {
+        "fromSec": 160,
+        "fps": 110.8
+      },
+      {
+        "fromSec": 170,
+        "fps": 106.4
+      }
+    ],
+    "samples": [
+      {
+        "second": 1,
+        "elapsed": 1.2833333333333337,
+        "enemies": 0,
+        "projectiles": 4,
+        "renderedObjects": 7,
+        "score": 0,
+        "status": "running"
+      },
+      {
+        "second": 2,
+        "elapsed": 2.3499999999999965,
+        "enemies": 1,
+        "projectiles": 1,
+        "renderedObjects": 3,
+        "score": 0,
+        "status": "running"
+      },
+      {
+        "second": 3,
+        "elapsed": 3.383333333333326,
+        "enemies": 1,
+        "projectiles": 0,
+        "renderedObjects": 3,
+        "score": 0,
+        "status": "running"
+      },
+      {
+        "second": 4,
+        "elapsed": 4.4499999999999895,
+        "enemies": 0,
+        "projectiles": 3,
+        "renderedObjects": 5,
+        "score": 0,
+        "status": "running"
+      },
+      {
+        "second": 5,
+        "elapsed": 5.483333333333319,
+        "enemies": 0,
+        "projectiles": 1,
+        "renderedObjects": 3,
+        "score": 0,
+        "status": "running"
+      },
+      {
+        "second": 6,
+        "elapsed": 6.516666666666649,
+        "enemies": 1,
+        "projectiles": 0,
+        "renderedObjects": 2,
+        "score": 0,
+        "status": "running"
+      },
+      {
+        "second": 7,
+        "elapsed": 7.5499999999999785,
+        "enemies": 1,
+        "projectiles": 3,
+        "renderedObjects": 5,
+        "score": 0,
+        "status": "running"
+      },
+      {
+        "second": 8,
+        "elapsed": 8.58333333333334,
+        "enemies": 1,
+        "projectiles": 1,
+        "renderedObjects": 3,
+        "score": 0,
+        "status": "running"
+      },
+      {
+        "second": 9,
+        "elapsed": 9.616666666666724,
+        "enemies": 2,
+        "projectiles": 0,
+        "renderedObjects": 5,
+        "score": 0,
+        "status": "running"
+      },
+      {
+        "second": 10,
+        "elapsed": 10.633333333333441,
+        "enemies": 2,
+        "projectiles": 1,
+        "renderedObjects": 6,
+        "score": 0,
+        "status": "running"
+      },
+      {
+        "second": 11,
+        "elapsed": 11.666666666666826,
+        "enemies": 2,
+        "projectiles": 0,
+        "renderedObjects": 3,
+        "score": 0,
+        "status": "running"
+      },
+      {
+        "second": 12,
+        "elapsed": 12.70000000000021,
+        "enemies": 2,
+        "projectiles": 2,
+        "renderedObjects": 5,
+        "score": 0,
+        "status": "running"
+      },
+      {
+        "second": 13,
+        "elapsed": 13.716666666666928,
+        "enemies": 3,
+        "projectiles": 1,
+        "renderedObjects": 7,
+        "score": 0,
+        "status": "running"
+      },
+      {
+        "second": 14,
+        "elapsed": 14.750000000000313,
+        "enemies": 3,
+        "projectiles": 3,
+        "renderedObjects": 8,
+        "score": 0,
+        "status": "running"
+      },
+      {
+        "second": 15,
+        "elapsed": 15.76666666666703,
+        "enemies": 3,
+        "projectiles": 0,
+        "renderedObjects": 5,
+        "score": 0,
+        "status": "running"
+      },
+      {
+        "second": 16,
+        "elapsed": 16.766666666666996,
+        "enemies": 2,
+        "projectiles": 1,
+        "renderedObjects": 10,
+        "score": 1,
+        "status": "running"
+      },
+      {
+        "second": 17,
+        "elapsed": 17.783333333333605,
+        "enemies": 3,
+        "projectiles": 0,
+        "renderedObjects": 5,
+        "score": 1,
+        "status": "running"
+      },
+      {
+        "second": 18,
+        "elapsed": 18.833333333333545,
+        "enemies": 3,
+        "projectiles": 0,
+        "renderedObjects": 4,
+        "score": 1,
+        "status": "running"
+      },
+      {
+        "second": 19,
+        "elapsed": 19.86666666666682,
+        "enemies": 3,
+        "projectiles": 3,
+        "renderedObjects": 7,
+        "score": 1,
+        "status": "running"
+      },
+      {
+        "second": 20,
+        "elapsed": 20.900000000000095,
+        "enemies": 3,
+        "projectiles": 1,
+        "renderedObjects": 6,
+        "score": 1,
+        "status": "running"
+      },
+      {
+        "second": 21,
+        "elapsed": 21.916666666666703,
+        "enemies": 4,
+        "projectiles": 0,
+        "renderedObjects": 5,
+        "score": 1,
+        "status": "running"
+      },
+      {
+        "second": 22,
+        "elapsed": 22.933333333333312,
+        "enemies": 4,
+        "projectiles": 0,
+        "renderedObjects": 5,
+        "score": 1,
+        "status": "running"
+      },
+      {
+        "second": 23,
+        "elapsed": 23.94999999999992,
+        "enemies": 4,
+        "projectiles": 0,
+        "renderedObjects": 6,
+        "score": 1,
+        "status": "running"
+      },
+      {
+        "second": 24,
+        "elapsed": 24.96666666666653,
+        "enemies": 4,
+        "projectiles": 0,
+        "renderedObjects": 5,
+        "score": 1,
+        "status": "running"
+      },
+      {
+        "second": 25,
+        "elapsed": 25.98333333333314,
+        "enemies": 5,
+        "projectiles": 1,
+        "renderedObjects": 9,
+        "score": 1,
+        "status": "running"
+      },
+      {
+        "second": 26,
+        "elapsed": 26.999999999999748,
+        "enemies": 5,
+        "projectiles": 1,
+        "renderedObjects": 9,
+        "score": 1,
+        "status": "running"
+      },
+      {
+        "second": 27,
+        "elapsed": 28.033333333333022,
+        "enemies": 5,
+        "projectiles": 0,
+        "renderedObjects": 6,
+        "score": 1,
+        "status": "running"
+      },
+      {
+        "second": 28,
+        "elapsed": 29.033333333332966,
+        "enemies": 4,
+        "projectiles": 2,
+        "renderedObjects": 9,
+        "score": 1,
+        "status": "running"
+      },
+      {
+        "second": 29,
+        "elapsed": 30.049999999999574,
+        "enemies": 4,
+        "projectiles": 0,
+        "renderedObjects": 10,
+        "score": 2,
+        "status": "running"
+      },
+      {
+        "second": 30,
+        "elapsed": 31.08333333333285,
+        "enemies": 4,
+        "projectiles": 0,
+        "renderedObjects": 7,
+        "score": 2,
+        "status": "running"
+      },
+      {
+        "second": 31,
+        "elapsed": 32.09999999999946,
+        "enemies": 4,
+        "projectiles": 1,
+        "renderedObjects": 7,
+        "score": 2,
+        "status": "running"
+      },
+      {
+        "second": 32,
+        "elapsed": 33.133333333332736,
+        "enemies": 4,
+        "projectiles": 0,
+        "renderedObjects": 7,
+        "score": 2,
+        "status": "running"
+      },
+      {
+        "second": 33,
+        "elapsed": 34.149999999999345,
+        "enemies": 5,
+        "projectiles": 1,
+        "renderedObjects": 7,
+        "score": 2,
+        "status": "running"
+      },
+      {
+        "second": 34,
+        "elapsed": 35.166666666665954,
+        "enemies": 5,
+        "projectiles": 0,
+        "renderedObjects": 7,
+        "score": 2,
+        "status": "running"
+      },
+      {
+        "second": 35,
+        "elapsed": 36.19999999999923,
+        "enemies": 5,
+        "projectiles": 1,
+        "renderedObjects": 8,
+        "score": 2,
+        "status": "running"
+      },
+      {
+        "second": 36,
+        "elapsed": 37.21666666666584,
+        "enemies": 5,
+        "projectiles": 0,
+        "renderedObjects": 7,
+        "score": 2,
+        "status": "running"
+      },
+      {
+        "second": 37,
+        "elapsed": 38.21666666666578,
+        "enemies": 6,
+        "projectiles": 0,
+        "renderedObjects": 9,
+        "score": 2,
+        "status": "running"
+      },
+      {
+        "second": 38,
+        "elapsed": 39.249999999999055,
+        "enemies": 5,
+        "projectiles": 2,
+        "renderedObjects": 13,
+        "score": 3,
+        "status": "running"
+      },
+      {
+        "second": 39,
+        "elapsed": 40.266666666665664,
+        "enemies": 5,
+        "projectiles": 0,
+        "renderedObjects": 7,
+        "score": 3,
+        "status": "running"
+      },
+      {
+        "second": 40,
+        "elapsed": 41.28333333333227,
+        "enemies": 5,
+        "projectiles": 5,
+        "renderedObjects": 11,
+        "score": 3,
+        "status": "running"
+      },
+      {
+        "second": 41,
+        "elapsed": 42.33333333333221,
+        "enemies": 6,
+        "projectiles": 0,
+        "renderedObjects": 9,
+        "score": 3,
+        "status": "running"
+      },
+      {
+        "second": 42,
+        "elapsed": 43.333333333332156,
+        "enemies": 5,
+        "projectiles": 0,
+        "renderedObjects": 13,
+        "score": 3,
+        "status": "running"
+      },
+      {
+        "second": 43,
+        "elapsed": 44.36666666666543,
+        "enemies": 5,
+        "projectiles": 0,
+        "renderedObjects": 7,
+        "score": 3,
+        "status": "running"
+      },
+      {
+        "second": 44,
+        "elapsed": 45.38333333333204,
+        "enemies": 5,
+        "projectiles": 0,
+        "renderedObjects": 6,
+        "score": 3,
+        "status": "running"
+      },
+      {
+        "second": 45,
+        "elapsed": 46.38333333333198,
+        "enemies": 6,
+        "projectiles": 1,
+        "renderedObjects": 9,
+        "score": 3,
+        "status": "running"
+      },
+      {
+        "second": 46,
+        "elapsed": 47.39999999999859,
+        "enemies": 6,
+        "projectiles": 0,
+        "renderedObjects": 7,
+        "score": 3,
+        "status": "running"
+      },
+      {
+        "second": 47,
+        "elapsed": 48.433333333331866,
+        "enemies": 6,
+        "projectiles": 2,
+        "renderedObjects": 11,
+        "score": 3,
+        "status": "running"
+      },
+      {
+        "second": 48,
+        "elapsed": 49.449999999998475,
+        "enemies": 6,
+        "projectiles": 0,
+        "renderedObjects": 7,
+        "score": 3,
+        "status": "running"
+      },
+      {
+        "second": 49,
+        "elapsed": 50.48333333333175,
+        "enemies": 7,
+        "projectiles": 2,
+        "renderedObjects": 12,
+        "score": 3,
+        "status": "running"
+      },
+      {
+        "second": 50,
+        "elapsed": 51.516666666665024,
+        "enemies": 7,
+        "projectiles": 0,
+        "renderedObjects": 10,
+        "score": 3,
+        "status": "running"
+      },
+      {
+        "second": 51,
+        "elapsed": 52.53333333333163,
+        "enemies": 7,
+        "projectiles": 0,
+        "renderedObjects": 9,
+        "score": 3,
+        "status": "running"
+      },
+      {
+        "second": 52,
+        "elapsed": 53.56666666666491,
+        "enemies": 8,
+        "projectiles": 2,
+        "renderedObjects": 12,
+        "score": 3,
+        "status": "running"
+      },
+      {
+        "second": 53,
+        "elapsed": 54.58333333333152,
+        "enemies": 7,
+        "projectiles": 0,
+        "renderedObjects": 13,
+        "score": 4,
+        "status": "running"
+      },
+      {
+        "second": 54,
+        "elapsed": 55.61666666666479,
+        "enemies": 6,
+        "projectiles": 2,
+        "renderedObjects": 14,
+        "score": 4,
+        "status": "running"
+      },
+      {
+        "second": 55,
+        "elapsed": 56.6333333333314,
+        "enemies": 6,
+        "projectiles": 0,
+        "renderedObjects": 9,
+        "score": 4,
+        "status": "running"
+      },
+      {
+        "second": 56,
+        "elapsed": 57.64999999999801,
+        "enemies": 7,
+        "projectiles": 1,
+        "renderedObjects": 11,
+        "score": 4,
+        "status": "running"
+      },
+      {
+        "second": 57,
+        "elapsed": 58.66666666666462,
+        "enemies": 7,
+        "projectiles": 0,
+        "renderedObjects": 10,
+        "score": 4,
+        "status": "running"
+      },
+      {
+        "second": 58,
+        "elapsed": 59.71666666666456,
+        "enemies": 7,
+        "projectiles": 0,
+        "renderedObjects": 9,
+        "score": 4,
+        "status": "running"
+      },
+      {
+        "second": 59,
+        "elapsed": 60.74999999999783,
+        "enemies": 6,
+        "projectiles": 2,
+        "renderedObjects": 13,
+        "score": 5,
+        "status": "running"
+      },
+      {
+        "second": 60,
+        "elapsed": 61.78333333333111,
+        "enemies": 7,
+        "projectiles": 0,
+        "renderedObjects": 10,
+        "score": 5,
+        "status": "running"
+      },
+      {
+        "second": 61,
+        "elapsed": 62.799999999997716,
+        "enemies": 7,
+        "projectiles": 3,
+        "renderedObjects": 12,
+        "score": 5,
+        "status": "running"
+      },
+      {
+        "second": 62,
+        "elapsed": 63.79999999999766,
+        "enemies": 7,
+        "projectiles": 0,
+        "renderedObjects": 10,
+        "score": 5,
+        "status": "running"
+      },
+      {
+        "second": 63,
+        "elapsed": 64.83333333333094,
+        "enemies": 7,
+        "projectiles": 1,
+        "renderedObjects": 11,
+        "score": 5,
+        "status": "running"
+      },
+      {
+        "second": 64,
+        "elapsed": 65.84999999999755,
+        "enemies": 8,
+        "projectiles": 2,
+        "renderedObjects": 13,
+        "score": 5,
+        "status": "running"
+      },
+      {
+        "second": 65,
+        "elapsed": 66.8499999999975,
+        "enemies": 8,
+        "projectiles": 1,
+        "renderedObjects": 11,
+        "score": 5,
+        "status": "running"
+      },
+      {
+        "second": 66,
+        "elapsed": 67.8666666666641,
+        "enemies": 8,
+        "projectiles": 2,
+        "renderedObjects": 13,
+        "score": 5,
+        "status": "running"
+      },
+      {
+        "second": 67,
+        "elapsed": 68.88333333333071,
+        "enemies": 8,
+        "projectiles": 0,
+        "renderedObjects": 11,
+        "score": 5,
+        "status": "running"
+      },
+      {
+        "second": 68,
+        "elapsed": 69.91666666666399,
+        "enemies": 9,
+        "projectiles": 1,
+        "renderedObjects": 13,
+        "score": 5,
+        "status": "running"
+      },
+      {
+        "second": 69,
+        "elapsed": 70.91666666666393,
+        "enemies": 9,
+        "projectiles": 0,
+        "renderedObjects": 10,
+        "score": 5,
+        "status": "running"
+      },
+      {
+        "second": 70,
+        "elapsed": 71.9499999999972,
+        "enemies": 9,
+        "projectiles": 0,
+        "renderedObjects": 12,
+        "score": 5,
+        "status": "running"
+      },
+      {
+        "second": 71,
+        "elapsed": 72.96666666666381,
+        "enemies": 6,
+        "projectiles": 0,
+        "renderedObjects": 19,
+        "score": 7,
+        "status": "running"
+      },
+      {
+        "second": 72,
+        "elapsed": 73.96666666666376,
+        "enemies": 7,
+        "projectiles": 1,
+        "renderedObjects": 13,
+        "score": 7,
+        "status": "running"
+      },
+      {
+        "second": 73,
+        "elapsed": 74.98333333333036,
+        "enemies": 7,
+        "projectiles": 0,
+        "renderedObjects": 9,
+        "score": 7,
+        "status": "running"
+      },
+      {
+        "second": 74,
+        "elapsed": 75.99999999999697,
+        "enemies": 7,
+        "projectiles": 0,
+        "renderedObjects": 12,
+        "score": 7,
+        "status": "running"
+      },
+      {
+        "second": 75,
+        "elapsed": 77.03333333333025,
+        "enemies": 7,
+        "projectiles": 2,
+        "renderedObjects": 12,
+        "score": 7,
+        "status": "running"
+      },
+      {
+        "second": 76,
+        "elapsed": 78.04999999999686,
+        "enemies": 8,
+        "projectiles": 2,
+        "renderedObjects": 11,
+        "score": 7,
+        "status": "running"
+      },
+      {
+        "second": 77,
+        "elapsed": 79.06666666666347,
+        "enemies": 8,
+        "projectiles": 1,
+        "renderedObjects": 13,
+        "score": 7,
+        "status": "running"
+      },
+      {
+        "second": 78,
+        "elapsed": 80.08333333333007,
+        "enemies": 8,
+        "projectiles": 1,
+        "renderedObjects": 11,
+        "score": 7,
+        "status": "running"
+      },
+      {
+        "second": 79,
+        "elapsed": 81.09999999999668,
+        "enemies": 8,
+        "projectiles": 1,
+        "renderedObjects": 14,
+        "score": 7,
+        "status": "running"
+      },
+      {
+        "second": 80,
+        "elapsed": 82.13333333332996,
+        "enemies": 9,
+        "projectiles": 0,
+        "renderedObjects": 11,
+        "score": 7,
+        "status": "running"
+      },
+      {
+        "second": 81,
+        "elapsed": 83.16666666666323,
+        "enemies": 9,
+        "projectiles": 1,
+        "renderedObjects": 12,
+        "score": 7,
+        "status": "running"
+      },
+      {
+        "second": 82,
+        "elapsed": 84.18333333332984,
+        "enemies": 7,
+        "projectiles": 2,
+        "renderedObjects": 24,
+        "score": 8,
+        "status": "running"
+      },
+      {
+        "second": 83,
+        "elapsed": 85.16666666666312,
+        "enemies": 6,
+        "projectiles": 1,
+        "renderedObjects": 17,
+        "score": 9,
+        "status": "running"
+      },
+      {
+        "second": 84,
+        "elapsed": 86.21666666666306,
+        "enemies": 7,
+        "projectiles": 1,
+        "renderedObjects": 12,
+        "score": 9,
+        "status": "running"
+      },
+      {
+        "second": 85,
+        "elapsed": 87.23333333332967,
+        "enemies": 7,
+        "projectiles": 0,
+        "renderedObjects": 10,
+        "score": 9,
+        "status": "running"
+      },
+      {
+        "second": 86,
+        "elapsed": 88.24999999999628,
+        "enemies": 5,
+        "projectiles": 2,
+        "renderedObjects": 18,
+        "score": 10,
+        "status": "running"
+      },
+      {
+        "second": 87,
+        "elapsed": 89.26666666666289,
+        "enemies": 5,
+        "projectiles": 0,
+        "renderedObjects": 8,
+        "score": 10,
+        "status": "running"
+      },
+      {
+        "second": 88,
+        "elapsed": 90.24999999999616,
+        "enemies": 6,
+        "projectiles": 1,
+        "renderedObjects": 9,
+        "score": 10,
+        "status": "running"
+      },
+      {
+        "second": 89,
+        "elapsed": 91.28333333332944,
+        "enemies": 5,
+        "projectiles": 1,
+        "renderedObjects": 13,
+        "score": 11,
+        "status": "running"
+      },
+      {
+        "second": 90,
+        "elapsed": 92.29999999999605,
+        "enemies": 5,
+        "projectiles": 0,
+        "renderedObjects": 9,
+        "score": 11,
+        "status": "running"
+      },
+      {
+        "second": 91,
+        "elapsed": 93.31666666666266,
+        "enemies": 5,
+        "projectiles": 2,
+        "renderedObjects": 10,
+        "score": 11,
+        "status": "running"
+      },
+      {
+        "second": 92,
+        "elapsed": 94.3666666666626,
+        "enemies": 6,
+        "projectiles": 0,
+        "renderedObjects": 7,
+        "score": 11,
+        "status": "running"
+      },
+      {
+        "second": 93,
+        "elapsed": 95.3833333333292,
+        "enemies": 6,
+        "projectiles": 1,
+        "renderedObjects": 11,
+        "score": 11,
+        "status": "running"
+      },
+      {
+        "second": 94,
+        "elapsed": 96.41666666666248,
+        "enemies": 6,
+        "projectiles": 1,
+        "renderedObjects": 9,
+        "score": 11,
+        "status": "running"
+      },
+      {
+        "second": 95,
+        "elapsed": 97.43333333332909,
+        "enemies": 5,
+        "projectiles": 1,
+        "renderedObjects": 12,
+        "score": 12,
+        "status": "running"
+      },
+      {
+        "second": 96,
+        "elapsed": 98.46666666666236,
+        "enemies": 6,
+        "projectiles": 0,
+        "renderedObjects": 8,
+        "score": 12,
+        "status": "running"
+      },
+      {
+        "second": 97,
+        "elapsed": 99.48333333332897,
+        "enemies": 5,
+        "projectiles": 2,
+        "renderedObjects": 12,
+        "score": 12,
+        "status": "running"
+      },
+      {
+        "second": 98,
+        "elapsed": 100.48333333332891,
+        "enemies": 5,
+        "projectiles": 0,
+        "renderedObjects": 7,
+        "score": 12,
+        "status": "running"
+      },
+      {
+        "second": 99,
+        "elapsed": 101.51666666666219,
+        "enemies": 6,
+        "projectiles": 0,
+        "renderedObjects": 8,
+        "score": 12,
+        "status": "running"
+      },
+      {
+        "second": 100,
+        "elapsed": 102.51666666666213,
+        "enemies": 6,
+        "projectiles": 1,
+        "renderedObjects": 10,
+        "score": 12,
+        "status": "running"
+      },
+      {
+        "second": 101,
+        "elapsed": 103.51666666666208,
+        "enemies": 5,
+        "projectiles": 0,
+        "renderedObjects": 14,
+        "score": 13,
+        "status": "running"
+      },
+      {
+        "second": 102,
+        "elapsed": 104.53333333332868,
+        "enemies": 5,
+        "projectiles": 2,
+        "renderedObjects": 11,
+        "score": 13,
+        "status": "running"
+      },
+      {
+        "second": 103,
+        "elapsed": 105.5499999999953,
+        "enemies": 6,
+        "projectiles": 1,
+        "renderedObjects": 9,
+        "score": 13,
+        "status": "running"
+      },
+      {
+        "second": 104,
+        "elapsed": 106.58333333332857,
+        "enemies": 6,
+        "projectiles": 1,
+        "renderedObjects": 9,
+        "score": 13,
+        "status": "running"
+      },
+      {
+        "second": 105,
+        "elapsed": 107.59999999999518,
+        "enemies": 6,
+        "projectiles": 0,
+        "renderedObjects": 8,
+        "score": 13,
+        "status": "running"
+      },
+      {
+        "second": 106,
+        "elapsed": 108.59999999999512,
+        "enemies": 5,
+        "projectiles": 1,
+        "renderedObjects": 10,
+        "score": 14,
+        "status": "running"
+      },
+      {
+        "second": 107,
+        "elapsed": 109.61666666666173,
+        "enemies": 5,
+        "projectiles": 0,
+        "renderedObjects": 10,
+        "score": 14,
+        "status": "running"
+      },
+      {
+        "second": 108,
+        "elapsed": 110.63333333332834,
+        "enemies": 5,
+        "projectiles": 0,
+        "renderedObjects": 6,
+        "score": 14,
+        "status": "running"
+      },
+      {
+        "second": 109,
+        "elapsed": 111.64999999999495,
+        "enemies": 5,
+        "projectiles": 0,
+        "renderedObjects": 6,
+        "score": 14,
+        "status": "running"
+      },
+      {
+        "second": 110,
+        "elapsed": 112.68333333332822,
+        "enemies": 4,
+        "projectiles": 0,
+        "renderedObjects": 10,
+        "score": 15,
+        "status": "running"
+      },
+      {
+        "second": 111,
+        "elapsed": 113.68333333332816,
+        "enemies": 5,
+        "projectiles": 0,
+        "renderedObjects": 8,
+        "score": 15,
+        "status": "running"
+      },
+      {
+        "second": 112,
+        "elapsed": 114.71666666666144,
+        "enemies": 5,
+        "projectiles": 0,
+        "renderedObjects": 10,
+        "score": 15,
+        "status": "running"
+      },
+      {
+        "second": 113,
+        "elapsed": 115.73333333332805,
+        "enemies": 4,
+        "projectiles": 0,
+        "renderedObjects": 10,
+        "score": 16,
+        "status": "running"
+      },
+      {
+        "second": 114,
+        "elapsed": 116.76666666666132,
+        "enemies": 2,
+        "projectiles": 0,
+        "renderedObjects": 12,
+        "score": 17,
+        "status": "running"
+      },
+      {
+        "second": 115,
+        "elapsed": 117.76666666666127,
+        "enemies": 3,
+        "projectiles": 2,
+        "renderedObjects": 8,
+        "score": 17,
+        "status": "running"
+      },
+      {
+        "second": 116,
+        "elapsed": 118.76666666666121,
+        "enemies": 3,
+        "projectiles": 0,
+        "renderedObjects": 4,
+        "score": 17,
+        "status": "running"
+      },
+      {
+        "second": 117,
+        "elapsed": 119.79999999999448,
+        "enemies": 3,
+        "projectiles": 0,
+        "renderedObjects": 5,
+        "score": 17,
+        "status": "running"
+      },
+      {
+        "second": 118,
+        "elapsed": 120.81666666666109,
+        "enemies": 3,
+        "projectiles": 2,
+        "renderedObjects": 8,
+        "score": 17,
+        "status": "running"
+      },
+      {
+        "second": 119,
+        "elapsed": 121.8333333333277,
+        "enemies": 3,
+        "projectiles": 1,
+        "renderedObjects": 8,
+        "score": 17,
+        "status": "running"
+      },
+      {
+        "second": 120,
+        "elapsed": 122.84999999999431,
+        "enemies": 3,
+        "projectiles": 0,
+        "renderedObjects": 4,
+        "score": 17,
+        "status": "running"
+      },
+      {
+        "second": 121,
+        "elapsed": 123.86666666666092,
+        "enemies": 3,
+        "projectiles": 1,
+        "renderedObjects": 6,
+        "score": 17,
+        "status": "running"
+      },
+      {
+        "second": 122,
+        "elapsed": 124.88333333332753,
+        "enemies": 3,
+        "projectiles": 2,
+        "renderedObjects": 7,
+        "score": 17,
+        "status": "running"
+      },
+      {
+        "second": 123,
+        "elapsed": 125.9166666666608,
+        "enemies": 4,
+        "projectiles": 0,
+        "renderedObjects": 6,
+        "score": 17,
+        "status": "running"
+      },
+      {
+        "second": 124,
+        "elapsed": 126.93333333332741,
+        "enemies": 3,
+        "projectiles": 1,
+        "renderedObjects": 10,
+        "score": 18,
+        "status": "running"
+      },
+      {
+        "second": 125,
+        "elapsed": 127.93333333332735,
+        "enemies": 3,
+        "projectiles": 3,
+        "renderedObjects": 8,
+        "score": 18,
+        "status": "running"
+      },
+      {
+        "second": 126,
+        "elapsed": 128.93333333332808,
+        "enemies": 3,
+        "projectiles": 0,
+        "renderedObjects": 4,
+        "score": 18,
+        "status": "running"
+      },
+      {
+        "second": 127,
+        "elapsed": 129.94999999999555,
+        "enemies": 3,
+        "projectiles": 2,
+        "renderedObjects": 10,
+        "score": 18,
+        "status": "running"
+      },
+      {
+        "second": 128,
+        "elapsed": 130.9833333333297,
+        "enemies": 3,
+        "projectiles": 0,
+        "renderedObjects": 8,
+        "score": 18,
+        "status": "running"
+      },
+      {
+        "second": 129,
+        "elapsed": 131.9833333333305,
+        "enemies": 3,
+        "projectiles": 0,
+        "renderedObjects": 5,
+        "score": 18,
+        "status": "running"
+      },
+      {
+        "second": 130,
+        "elapsed": 132.99999999999798,
+        "enemies": 3,
+        "projectiles": 0,
+        "renderedObjects": 5,
+        "score": 18,
+        "status": "running"
+      },
+      {
+        "second": 131,
+        "elapsed": 134.03333333333214,
+        "enemies": 4,
+        "projectiles": 3,
+        "renderedObjects": 8,
+        "score": 18,
+        "status": "running"
+      },
+      {
+        "second": 132,
+        "elapsed": 135.0499999999996,
+        "enemies": 4,
+        "projectiles": 0,
+        "renderedObjects": 5,
+        "score": 18,
+        "status": "running"
+      },
+      {
+        "second": 133,
+        "elapsed": 136.0666666666671,
+        "enemies": 4,
+        "projectiles": 2,
+        "renderedObjects": 7,
+        "score": 18,
+        "status": "running"
+      },
+      {
+        "second": 134,
+        "elapsed": 137.06666666666789,
+        "enemies": 3,
+        "projectiles": 3,
+        "renderedObjects": 12,
+        "score": 18,
+        "status": "running"
+      },
+      {
+        "second": 135,
+        "elapsed": 138.06666666666868,
+        "enemies": 4,
+        "projectiles": 1,
+        "renderedObjects": 9,
+        "score": 18,
+        "status": "running"
+      },
+      {
+        "second": 136,
+        "elapsed": 139.08333333333616,
+        "enemies": 3,
+        "projectiles": 2,
+        "renderedObjects": 10,
+        "score": 19,
+        "status": "running"
+      },
+      {
+        "second": 137,
+        "elapsed": 140.10000000000363,
+        "enemies": 3,
+        "projectiles": 3,
+        "renderedObjects": 9,
+        "score": 19,
+        "status": "running"
+      },
+      {
+        "second": 138,
+        "elapsed": 141.1333333333378,
+        "enemies": 3,
+        "projectiles": 0,
+        "renderedObjects": 4,
+        "score": 19,
+        "status": "running"
+      },
+      {
+        "second": 139,
+        "elapsed": 142.15000000000526,
+        "enemies": 4,
+        "projectiles": 4,
+        "renderedObjects": 12,
+        "score": 19,
+        "status": "running"
+      },
+      {
+        "second": 140,
+        "elapsed": 143.16666666667274,
+        "enemies": 4,
+        "projectiles": 0,
+        "renderedObjects": 6,
+        "score": 19,
+        "status": "running"
+      },
+      {
+        "second": 141,
+        "elapsed": 144.16666666667354,
+        "enemies": 4,
+        "projectiles": 2,
+        "renderedObjects": 7,
+        "score": 19,
+        "status": "running"
+      },
+      {
+        "second": 142,
+        "elapsed": 145.183333333341,
+        "enemies": 4,
+        "projectiles": 0,
+        "renderedObjects": 5,
+        "score": 19,
+        "status": "running"
+      },
+      {
+        "second": 143,
+        "elapsed": 146.1833333333418,
+        "enemies": 5,
+        "projectiles": 1,
+        "renderedObjects": 9,
+        "score": 19,
+        "status": "running"
+      },
+      {
+        "second": 144,
+        "elapsed": 147.21666666667596,
+        "enemies": 5,
+        "projectiles": 1,
+        "renderedObjects": 8,
+        "score": 19,
+        "status": "running"
+      },
+      {
+        "second": 145,
+        "elapsed": 148.21666666667676,
+        "enemies": 5,
+        "projectiles": 2,
+        "renderedObjects": 9,
+        "score": 19,
+        "status": "running"
+      },
+      {
+        "second": 146,
+        "elapsed": 149.21666666667755,
+        "enemies": 5,
+        "projectiles": 5,
+        "renderedObjects": 12,
+        "score": 19,
+        "status": "running"
+      },
+      {
+        "second": 147,
+        "elapsed": 150.23333333334503,
+        "enemies": 5,
+        "projectiles": 0,
+        "renderedObjects": 8,
+        "score": 19,
+        "status": "running"
+      },
+      {
+        "second": 148,
+        "elapsed": 151.23333333334583,
+        "enemies": 5,
+        "projectiles": 5,
+        "renderedObjects": 14,
+        "score": 19,
+        "status": "running"
+      },
+      {
+        "second": 149,
+        "elapsed": 152.28333333334666,
+        "enemies": 5,
+        "projectiles": 2,
+        "renderedObjects": 8,
+        "score": 19,
+        "status": "running"
+      },
+      {
+        "second": 150,
+        "elapsed": 153.30000000001414,
+        "enemies": 5,
+        "projectiles": 1,
+        "renderedObjects": 8,
+        "score": 19,
+        "status": "running"
+      },
+      {
+        "second": 151,
+        "elapsed": 154.3333333333483,
+        "enemies": 6,
+        "projectiles": 4,
+        "renderedObjects": 13,
+        "score": 19,
+        "status": "running"
+      },
+      {
+        "second": 152,
+        "elapsed": 155.3333333333491,
+        "enemies": 6,
+        "projectiles": 0,
+        "renderedObjects": 8,
+        "score": 19,
+        "status": "running"
+      },
+      {
+        "second": 153,
+        "elapsed": 156.35000000001656,
+        "enemies": 6,
+        "projectiles": 2,
+        "renderedObjects": 10,
+        "score": 19,
+        "status": "running"
+      },
+      {
+        "second": 154,
+        "elapsed": 157.36666666668404,
+        "enemies": 6,
+        "projectiles": 0,
+        "renderedObjects": 7,
+        "score": 19,
+        "status": "running"
+      },
+      {
+        "second": 155,
+        "elapsed": 158.38333333335152,
+        "enemies": 7,
+        "projectiles": 3,
+        "renderedObjects": 12,
+        "score": 19,
+        "status": "running"
+      },
+      {
+        "second": 156,
+        "elapsed": 159.33333333335227,
+        "enemies": 7,
+        "projectiles": 1,
+        "renderedObjects": 10,
+        "score": 19,
+        "status": "running"
+      },
+      {
+        "second": 157,
+        "elapsed": 160.35000000001975,
+        "enemies": 7,
+        "projectiles": 3,
+        "renderedObjects": 15,
+        "score": 19,
+        "status": "running"
+      },
+      {
+        "second": 158,
+        "elapsed": 161.36666666668722,
+        "enemies": 7,
+        "projectiles": 2,
+        "renderedObjects": 14,
+        "score": 19,
+        "status": "running"
+      },
+      {
+        "second": 159,
+        "elapsed": 162.3833333333547,
+        "enemies": 8,
+        "projectiles": 1,
+        "renderedObjects": 13,
+        "score": 19,
+        "status": "running"
+      },
+      {
+        "second": 160,
+        "elapsed": 163.40000000002217,
+        "enemies": 8,
+        "projectiles": 2,
+        "renderedObjects": 13,
+        "score": 19,
+        "status": "running"
+      },
+      {
+        "second": 161,
+        "elapsed": 164.41666666668965,
+        "enemies": 8,
+        "projectiles": 1,
+        "renderedObjects": 11,
+        "score": 19,
+        "status": "running"
+      },
+      {
+        "second": 162,
+        "elapsed": 165.43333333335713,
+        "enemies": 7,
+        "projectiles": 3,
+        "renderedObjects": 16,
+        "score": 19,
+        "status": "running"
+      },
+      {
+        "second": 163,
+        "elapsed": 166.43333333335792,
+        "enemies": 8,
+        "projectiles": 2,
+        "renderedObjects": 14,
+        "score": 19,
+        "status": "running"
+      },
+      {
+        "second": 164,
+        "elapsed": 167.4500000000254,
+        "enemies": 8,
+        "projectiles": 2,
+        "renderedObjects": 15,
+        "score": 19,
+        "status": "running"
+      },
+      {
+        "second": 165,
+        "elapsed": 168.48333333335955,
+        "enemies": 8,
+        "projectiles": 1,
+        "renderedObjects": 11,
+        "score": 19,
+        "status": "running"
+      },
+      {
+        "second": 166,
+        "elapsed": 169.50000000002703,
+        "enemies": 9,
+        "projectiles": 1,
+        "renderedObjects": 14,
+        "score": 19,
+        "status": "running"
+      },
+      {
+        "second": 167,
+        "elapsed": 170.5166666666945,
+        "enemies": 9,
+        "projectiles": 2,
+        "renderedObjects": 13,
+        "score": 19,
+        "status": "running"
+      },
+      {
+        "second": 168,
+        "elapsed": 171.55000000002866,
+        "enemies": 9,
+        "projectiles": 2,
+        "renderedObjects": 16,
+        "score": 19,
+        "status": "running"
+      },
+      {
+        "second": 169,
+        "elapsed": 172.56666666669614,
+        "enemies": 8,
+        "projectiles": 2,
+        "renderedObjects": 16,
+        "score": 20,
+        "status": "running"
+      },
+      {
+        "second": 170,
+        "elapsed": 173.63333333336365,
+        "enemies": 9,
+        "projectiles": 2,
+        "renderedObjects": 14,
+        "score": 20,
+        "status": "running"
+      },
+      {
+        "second": 171,
+        "elapsed": 174.63333333336445,
+        "enemies": 9,
+        "projectiles": 2,
+        "renderedObjects": 15,
+        "score": 20,
+        "status": "running"
+      },
+      {
+        "second": 172,
+        "elapsed": 175.65000000003192,
+        "enemies": 7,
+        "projectiles": 2,
+        "renderedObjects": 21,
+        "score": 21,
+        "status": "running"
+      },
+      {
+        "second": 173,
+        "elapsed": 176.6666666666994,
+        "enemies": 7,
+        "projectiles": 2,
+        "renderedObjects": 13,
+        "score": 21,
+        "status": "running"
+      },
+      {
+        "second": 174,
+        "elapsed": 177.6666666667002,
+        "enemies": 8,
+        "projectiles": 1,
+        "renderedObjects": 11,
+        "score": 21,
+        "status": "running"
+      },
+      {
+        "second": 175,
+        "elapsed": 178.70000000003435,
+        "enemies": 8,
+        "projectiles": 2,
+        "renderedObjects": 15,
+        "score": 21,
+        "status": "running"
+      },
+      {
+        "second": 176,
+        "elapsed": 179.7333333333685,
+        "enemies": 8,
+        "projectiles": 1,
+        "renderedObjects": 11,
+        "score": 21,
+        "status": "running"
+      },
+      {
+        "second": 177,
+        "elapsed": 180,
+        "enemies": 7,
+        "projectiles": 1,
+        "renderedObjects": 10,
+        "score": 21,
+        "status": "ended"
+      }
+    ]
+  },
+  "memory": [
+    {
+      "label": "menu, before cycle 1",
+      "jsHeapUsedMB": 7.82,
+      "domNodes": 177,
+      "jsEventListeners": 189,
+      "canvases": 0
+    },
+    {
+      "label": "menu, after cycle 1",
+      "jsHeapUsedMB": 8.18,
+      "domNodes": 177,
+      "jsEventListeners": 189,
+      "canvases": 0
+    },
+    {
+      "label": "menu, after cycle 2",
+      "jsHeapUsedMB": 8.38,
+      "domNodes": 177,
+      "jsEventListeners": 189,
+      "canvases": 0
+    },
+    {
+      "label": "menu, after cycle 3",
+      "jsHeapUsedMB": 8.59,
+      "domNodes": 177,
+      "jsEventListeners": 189,
+      "canvases": 0
+    },
+    {
+      "label": "menu, after cycle 4",
+      "jsHeapUsedMB": 8.73,
+      "domNodes": 177,
+      "jsEventListeners": 189,
+      "canvases": 0
+    },
+    {
+      "label": "menu, after cycle 5",
+      "jsHeapUsedMB": 8.84,
+      "domNodes": 177,
+      "jsEventListeners": 189,
+      "canvases": 0
+    },
+    {
+      "label": "menu, after cycle 6",
+      "jsHeapUsedMB": 9,
+      "domNodes": 177,
+      "jsEventListeners": 189,
+      "canvases": 0
+    },
+    {
+      "label": "menu, after cycle 7",
+      "jsHeapUsedMB": 9.11,
+      "domNodes": 177,
+      "jsEventListeners": 189,
+      "canvases": 0
+    },
+    {
+      "label": "menu, after cycle 8",
+      "jsHeapUsedMB": 9.4,
+      "domNodes": 177,
+      "jsEventListeners": 189,
+      "canvases": 0
+    },
+    {
+      "label": "menu, after cycle 9",
+      "jsHeapUsedMB": 9.48,
+      "domNodes": 177,
+      "jsEventListeners": 189,
+      "canvases": 0
+    },
+    {
+      "label": "menu, after cycle 10",
+      "jsHeapUsedMB": 9.55,
+      "domNodes": 177,
+      "jsEventListeners": 189,
+      "canvases": 0
+    }
+  ],
+  "memoryCycleSec": 20,
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ],
+  "httpErrors": [
+    "404 GET http://localhost:4174/api/ranking?sessionDurationSec=180&enemySpawnIntervalSec=4&page=1&pageSize=5"
+  ],
+  "heapGrowthBreakdown": {
+    "method": "Heap snapshots after cycle 2 and after cycle 8 (6 cycles of 8 s), forced GC before each; self size summed per V8 node type",
+    "jsHeapUsedChangeKB": 845,
+    "byTypeKB": {
+      "code": 705,
+      "native": 108,
+      "string": 60,
+      "objectShape": 14,
+      "object": 16,
+      "closure": 4,
+      "array": 2
+    }
+  },
+  "notes": [
+    "## Analysis",
+    "",
+    "- **Frame rate.** The target of 60 FPS is met with margin: the display refreshes at 120 Hz and the game averages ~109 FPS over three minutes of continuous combat. The p95 frame time of 16.6 ms is itself at 60 FPS; only 1.8 % of frames exceeded 20 ms and 0.1 % exceeded 33 ms, with no long tasks. The first 10-second window is lower (~93 FPS) while textures upload, shaders compile and the first enemies arrive.",
+    "- **Simulation cost.** The fixed 60 Hz simulation (up to 9 enemies, a few projectiles and ~24 animated display objects) showed no long tasks at any point; GPU and CPU time per frame were not profiled separately, but the full-screen water and island tiles on an integrated GPU are the most likely main cost.",
+    "- **Memory.** Across 10 start → play → quit cycles, DOM nodes, JS event listeners and canvases return to exactly the same values after every match (0 canvases on the menu), so listeners, the ticker, the Pixi app and its WebGL canvas are all released.",
+    "- **Heap growth investigation.** Used JS heap rises ~0.15 MB per cycle. Comparing heap snapshots after cycles 2 and 8 shows where it goes (results.json → heapGrowthBreakdown): of +845 KB, **705 KB is V8 compiled code** (the JIT tiering up as more code paths run), 108 KB native and 60 KB strings, while application objects grew by only **16 KB** (~3 KB per match, promises and async state). There is no leak of game entities, textures or listeners; the growth is in V8 runtime code caches, which are expected to level off once the code paths are warm.",
+    "- **Mock worker restart (found here, fixed).** In an earlier run, ranking requests made right after a long match occasionally returned HTTP 404: the browser had restarted the MSW Service Worker, which forgot the page and let requests reach the static host. The app now detects responses without the mock marker header, re-activates the mock and repeats the request. In the final run this happened once and recovered automatically; the only trace is the browser console line for that first 404 (results.json → httpErrors).",
+    "",
+    "## Limitations of these measurements",
+    "",
+    "- One machine with an integrated GPU (Intel UHD, 120 Hz display); FPS is capped by the refresh rate, so 60 Hz displays will show ~60 FPS with more headroom per frame.",
+    "- Measured in a **visible** Chrome window at 1600×900, DPR 1. Headless Chrome does not pace frames to the display and is not representative; an occluded or minimized window is throttled and invalidates a run. On high-DPI screens the canvas resolution is capped at 2×.",
+    "- The scripted pilot is driven through Playwright (keyboard over CDP) and state is sampled once a second; both add a little overhead that a real player would not.",
+    "- The player is invulnerable so the full three minutes are measured with combat; sound is muted. GPU memory is not measured directly (only JS heap, DOM and listeners)."
+  ]
+}
